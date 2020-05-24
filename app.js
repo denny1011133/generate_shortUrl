@@ -5,7 +5,9 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser')
 const URL = require('./models/url.js')
 const generateShortUrl = require('./generateShortUrl')
-mongoose.connect('mongodb://localhost/url', { useNewUrlParser: true, useUnifiedTopology: true })
+const PORT = process.env.PORT || 3000
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/url'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -33,7 +35,7 @@ app.post('/short', (req, res) => {
     .then(() => res.render('success', { shortUrl, originalUrl }))
     .catch(error => console.log(error))
 })
-// 短網址轉跳
+// 轉回原始網址
 app.get('/:id', (req, res) => {
   const id = req.params.id
   URL.find({ shortUrl: id })
@@ -46,7 +48,7 @@ app.get('/:id', (req, res) => {
 
 })
 
-// 設定 port 3000
-app.listen(3000, () => {
-  console.log('App is running on http://localhost:3000')
+// 設定 port 
+app.listen(PORT, () => {
+  console.log('App is running on http://localhost:${PORT}')
 })
