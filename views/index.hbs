@@ -1,5 +1,6 @@
-<form action="/short" method="POST">
+<form action="/" method="POST">
   <label>短網址產生器:</label>
-  <input type="url" placeholder="請輸入網址" name="url">
+  <!--使用者沒有輸入內容，就按下了送出鈕，需要防止表單送出並提示使用者-->
+  <input type="url" placeholder="請輸入網址" name="url" required>
   <button type="submit">Submit</button>
 </form>

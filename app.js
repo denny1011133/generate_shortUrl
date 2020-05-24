@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 // 設定送出網址路由
-app.post('/short', (req, res) => {
+app.post('/', (req, res) => {
   const originalUrl = req.body.url //擷取原始網址
   const shortUrl = generateShortUrl()//短網址產生器
   URL.create({ shortUrl, originalUrl })
@@ -50,5 +50,5 @@ app.get('/:id', (req, res) => {
 
 // 設定 port 
 app.listen(PORT, () => {
-  console.log('App is running on http://localhost:${PORT}')
+  console.log(`App is running on http://localhost:${PORT}`)
 })
