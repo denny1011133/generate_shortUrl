@@ -40,8 +40,9 @@ app.post('/', (req, res) => {
       if (array.includes(shortUrl)) {
         shortUrl = generateShortUrl()
       } URL.create({ shortUrl, originalUrl })
+      res.render('success', { shortUrl, originalUrl, hostname, PORT })
     })
-    .then(() => res.render('success', { shortUrl, originalUrl, hostname, PORT }))
+
     .catch(error => console.log(error))
 })
 // 轉回原始網址
