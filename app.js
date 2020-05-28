@@ -42,7 +42,6 @@ app.post('/', (req, res) => {
       } URL.create({ shortUrl, originalUrl })
       res.render('success', { shortUrl, originalUrl, hostname, PORT })
     })
-
     .catch(error => console.log(error))
 })
 // 轉回原始網址
